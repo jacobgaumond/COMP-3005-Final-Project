@@ -31,11 +31,11 @@ CREATE TABLE Rooms (
     room_number SERIAL PRIMARY KEY
 );
 
-CREATE TYPE event_type AS ENUM ('Personal Session', 'Group Class');
+CREATE TYPE EVENT_TYPE_ENUM AS ENUM ('Personal Session', 'Group Class');
 
 CREATE TABLE FitnessEvents (
     event_id SERIAL PRIMARY KEY,
-    event_type SESSION_TYPE NOT NULL,
+    event_type EVENT_TYPE_ENUM NOT NULL,
     room_number INTEGER REFERENCES Rooms(room_number),
     trainer_id INTEGER REFERENCES Trainers(trainer_id),
     time_slot_hour TIME
