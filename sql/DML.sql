@@ -17,7 +17,7 @@ INSERT INTO FitnessGoals (member_id, target_weight_lb) VALUES
     (2, 115),
     (3, 150),
     (4, 140),
-    (5, 125)
+    (5, 125);
 
 INSERT INTO Trainers (trainer_id, first_name, last_name) VALUES
     (1, 'Joseph', 'Harper'),
