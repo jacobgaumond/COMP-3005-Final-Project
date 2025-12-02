@@ -80,6 +80,11 @@ def bookClass(first_name, last_name, room_number, time_slot_hour):
     db_query = "INSERT INTO EventBookings (event_id, member_id) VALUES ((SELECT event_id FROM FitnessEvents WHERE room_number = " + room_number + " AND time_slot_hour = '" + time_slot_hour + "'), (SELECT member_id FROM Members WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "'));"
     executeQuery(db_query)
 
+def setAvailability(first_name, last_name, time_slot_hour):
+    # Create the availability entry
+    db_query = "INSERT INTO AvailableTimeslots (trainer_id, time_slot_hour) VALUES ((SELECT trainer_id FROM Trainers WHERE first_name = '" + first_name "' AND last_name = '" + last_name + "'), '" time_slot_hour "');"
+    executeQuery(db_query)
+
 # Main Code
 if __name__ == '__main__':
     user_role = ""
@@ -140,7 +145,7 @@ if __name__ == '__main__':
 
                 print(ASTERISK_STRING)
             elif (user_input == "2"):
-                print("Updating personal information. Enter first/last name, then enter new information.")
+                print("Updating personal information. Enter your first/last name, then enter new information.")
 
                 input_arguments = promptArguments(["first_name", "last_name", "email", "heart_rate_bpm", "current_weight_lb", "target_weight_lb"])
                 updateMember(input_arguments[0], input_arguments[1], input_arguments[2], input_arguments[3], input_arguments[4], input_arguments[5])
@@ -166,12 +171,16 @@ if __name__ == '__main__':
                 print("Entered option is not known. Try again.")
                 print(ASTERISK_STRING)
         elif (user_role == "Trainer"):
-            pass
-            # else:
-            #     print(ASTERISK_STRING)
+            if (user_input == "1"):
+                print("Setting availability. Enter your first/last name, then the desired information.\n(Note: Enter your hour timeslot in XX:00 format)")
 
-            #     print("Entered option is not known. Try again.")
-            #     print(ASTERISK_STRING)
+                input_arguments = promptArguments(["first_name", "last_name", "time_slot_hour"])
+                setAvailability(input_arguments[0], input_arguments[1], input_arguments[2])
+
+                print(ASTERISK_STRING)
+            elif (user_input == "2"):
+                pass
+                # print(ASTERISK_STRING)
         elif (user_role == "Administrative Staff"):
             pass
             # else:
