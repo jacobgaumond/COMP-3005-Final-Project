@@ -26,7 +26,7 @@ The following applications must be installed to run this project:
 This project requires a python virtual environment with a pip package used to interact with PostgreSQL.
 
 To automatically setup the python virtual environment, execute the following:
-    - `./setup-python.sh`
+    - `./app/setup-python.sh`
 
 ### Database Setup
 
@@ -36,7 +36,7 @@ To launch the database, execute the following:
 ### Running The App
 
 Assuming the python setup command (above) has been ran, run the app with the following:
-    - `./run-app.sh`
+    - `./app/run-app.sh`
 
 ### Database Teardown
 
