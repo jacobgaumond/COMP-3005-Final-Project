@@ -41,6 +41,9 @@ CREATE TABLE FitnessEvents (
     time_slot_hour TIME
 );
 
+CREATE VIEW Schedules AS
+    SELECT event_type, room_number, time_slot_hour, trainer_id FROM FitnessEvents;
+
 CREATE TABLE EventBookings (
     booking_id SERIAL PRIMARY KEY,
     event_id INTEGER REFERENCES FitnessEvents(event_id),

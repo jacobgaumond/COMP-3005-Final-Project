@@ -85,6 +85,11 @@ def setAvailability(first_name, last_name, time_slot_hour):
     db_query = "INSERT INTO AvailableTimeslots (trainer_id, time_slot_hour) VALUES ((SELECT trainer_id FROM Trainers WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "'), '" + time_slot_hour + "');"
     executeQuery(db_query)
 
+def getSchedule(first_name, last_name):
+    # Get all associated entries from schedules
+    db_query = "SELECT event_type, room_number, time_slot_hour FROM Schedules WHERE trainer_id = (SELECT trainer_id FROM Trainers WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "');"
+    executeQuery(db_query)
+
 # Main Code
 if __name__ == '__main__':
     user_role = ""
@@ -179,8 +184,12 @@ if __name__ == '__main__':
 
                 print(ASTERISK_STRING)
             elif (user_input == "2"):
-                pass
-                # print(ASTERISK_STRING)
+                print("Retrieving all scheduled events in the following form:\n\tEVENT_TYPE, ROOM_NUMBER, TIMESLOT\n\nEnter your first/last name.")
+
+                input_arguments = promptArguments(["first_name", "last_name"])
+                getSchedule(input_arguments[0], input_arguments[1])
+
+                print(ASTERISK_STRING)
         elif (user_role == "Administrative Staff"):
             pass
             # else:
