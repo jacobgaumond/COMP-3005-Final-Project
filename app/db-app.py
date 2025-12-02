@@ -190,13 +190,25 @@ if __name__ == '__main__':
                 getSchedule(input_arguments[0], input_arguments[1])
 
                 print(ASTERISK_STRING)
-        elif (user_role == "Administrative Staff"):
-            pass
-            # else:
-            #     print(ASTERISK_STRING)
+            else:
+                print(ASTERISK_STRING)
 
-            #     print("Entered option is not known. Try again.")
-            #     print(ASTERISK_STRING)
+                print("Entered option is not known. Try again.")
+                print(ASTERISK_STRING)
+        elif (user_role == "Administrative Staff"):
+            if (user_input == "1"):
+                pass
+
+                print(ASTERISK_STRING)
+            elif (user_input == "2"):
+                pass
+
+                print(ASTERISK_STRING)
+            else:
+                print(ASTERISK_STRING)
+
+                print("Entered option is not known. Try again.")
+                print(ASTERISK_STRING)
         else:
             print(ASTERISK_STRING)
 
