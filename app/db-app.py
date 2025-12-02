@@ -49,14 +49,25 @@ if __name__ == '__main__':
         print(ASTERISK_STRING)
         print("COMP 3005 Final Project")
         if (user_role == ""):
-            print("What role of user are you?")
+            print("\nWhat role of user are you?")
             print("\nOptions:")
             print("\t1) Member")
             print("\t2) Trainer")
             print("\t3) Administrative Staff")
         else:
-            print("Hello " + user_role + "!")
+            print("\nHello " + user_role + "!")
             print("\nOptions:")
+            if (user_role == "Member"):
+                print("\t1) User Registration")
+                print("\t2) Profile Management")
+                print("\t3) PT Session Scheduling")
+                print("\t4) Group Class Registration")
+            elif (user_role == "Trainer"):
+                print("\t1) Set Availability")
+                print("\t2) Schedule View")
+            elif (user_role == "Administrative Staff"):
+                print("\t1) Room Booking")
+                print("\t2) Class Management")
 
         print("\tq) Quit")
         print(ASTERISK_STRING)
@@ -74,12 +85,33 @@ if __name__ == '__main__':
             elif (user_input == "2"):
                 user_role = "Trainer"
             elif (user_input == "3"):
-                user_role = "Adminstrative Staff"
+                user_role = "Administrative Staff"
             else:
                 print(ASTERISK_STRING)
 
                 print("Entered option is not known. Try again.")
                 print(ASTERISK_STRING)
+        elif (user_role == "Member"):
+            pass
+            # else:
+            #     print(ASTERISK_STRING)
+
+            #     print("Entered option is not known. Try again.")
+            #     print(ASTERISK_STRING)
+        elif (user_role == "Trainer"):
+            pass
+            # else:
+            #     print(ASTERISK_STRING)
+
+            #     print("Entered option is not known. Try again.")
+            #     print(ASTERISK_STRING)
+        elif (user_role == "Administrative Staff"):
+            pass
+            # else:
+            #     print(ASTERISK_STRING)
+
+            #     print("Entered option is not known. Try again.")
+            #     print(ASTERISK_STRING)
         else:
             print(ASTERISK_STRING)
 
