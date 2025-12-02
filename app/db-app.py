@@ -82,7 +82,7 @@ def bookClass(first_name, last_name, room_number, time_slot_hour):
 
 def setAvailability(first_name, last_name, time_slot_hour):
     # Create the availability entry
-    db_query = "INSERT INTO AvailableTimeslots (trainer_id, time_slot_hour) VALUES ((SELECT trainer_id FROM Trainers WHERE first_name = '" + first_name "' AND last_name = '" + last_name + "'), '" time_slot_hour "');"
+    db_query = "INSERT INTO AvailableTimeslots (trainer_id, time_slot_hour) VALUES ((SELECT trainer_id FROM Trainers WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "'), '" + time_slot_hour + "');"
     executeQuery(db_query)
 
 # Main Code
