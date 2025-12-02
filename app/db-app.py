@@ -55,7 +55,7 @@ def createMember(first_name, last_name, email, heart_rate_bpm, current_weight_lb
 
 def updateMember(first_name, last_name, email, heart_rate_bpm, current_weight_lb, target_weight_lb):
     # Update the email
-    db_query = "UPDATE Members SET email = '" + email + "' WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "');"
+    db_query = "UPDATE Members SET email = '" + email + "' WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "';"
     executeQuery(db_query)
 
     # Update the HealthInfo entry
@@ -68,7 +68,7 @@ def updateMember(first_name, last_name, email, heart_rate_bpm, current_weight_lb
 
 def bookSession(first_name, last_name, trainer_first_name, trainer_last_name, room_number, time_slot_hour):
     # Create new fitness event (personal session)
-    db_query = "INSERT INTO FitnessEvents (event_type, room_number, trainer_id, time_slot_hour) VALUES ('Personal Session', " + room_number + ", (SELECT trainer_id FROM Trainers WHERE first_name = " + trainer_first_name + "' AND last_name = '" + trainer_last_name + "'), '" + time_slot_hour + "');"
+    db_query = "INSERT INTO FitnessEvents (event_type, room_number, trainer_id, time_slot_hour) VALUES ('Personal Session', " + room_number + ", (SELECT trainer_id FROM Trainers WHERE first_name = '" + trainer_first_name + "' AND last_name = '" + trainer_last_name + "'), '" + time_slot_hour + "');"
     executeQuery(db_query)
 
     # Book the member for the new event
@@ -165,7 +165,7 @@ if __name__ == '__main__':
                 print("Booking a new session with a trainer. Enter your first/last name, then the desired information for your personal session.\n(Note: Enter your hour timeslot in XX:00 format)")
 
                 input_arguments = promptArguments(["first_name", "last_name", "trainer_first_name", "trainer_last_name", "room_number", "time_slot_hour"])
-                bookSession(input_arguments[0], input_arguments[1], input_arguments[2], input_arguments[3], input_arguments[5], input_arguments[6])
+                bookSession(input_arguments[0], input_arguments[1], input_arguments[2], input_arguments[3], input_arguments[4], input_arguments[5])
 
                 print(ASTERISK_STRING)
             elif (user_input == "4"):
