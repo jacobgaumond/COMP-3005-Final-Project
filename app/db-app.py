@@ -42,22 +42,44 @@ def promptArguments(argumentList):
 
 # Main Code
 if __name__ == '__main__':
+    user_role = ""
+
     user_has_quit = False
     while (not user_has_quit):
         print(ASTERISK_STRING)
         print("COMP 3005 Final Project")
-        print("\nOptions:")
-        
+        if (user_role == ""):
+            print("What role of user are you?")
+            print("\nOptions:")
+            print("\t1) Member")
+            print("\t2) Trainer")
+            print("\t3) Administrative Staff")
+        else:
+            print("Hello " + user_role + "!")
+            print("\nOptions:")
+
         print("\tq) Quit")
         print(ASTERISK_STRING)
 
         user_input = input()
-        
+
         if (user_input == "q"):
             print("Quitting program...")
             user_has_quit = True
 
             print(ASTERISK_STRING)
+        elif (user_role == ""):
+            if (user_input == "1"):
+                user_role = "Member"
+            elif (user_input == "2"):
+                user_role = "Trainer"
+            elif (user_input == "3"):
+                user_role = "Adminstrative Staff"
+            else:
+                print(ASTERISK_STRING)
+
+                print("Entered option is not known. Try again.")
+                print(ASTERISK_STRING)
         else:
             print(ASTERISK_STRING)
 
