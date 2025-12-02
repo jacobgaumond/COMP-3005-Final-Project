@@ -90,6 +90,11 @@ def getSchedule(first_name, last_name):
     db_query = "SELECT event_type, room_number, time_slot_hour FROM Schedules WHERE trainer_id = (SELECT trainer_id FROM Trainers WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "');"
     executeQuery(db_query)
 
+def manageClass(trainer_first_name, trainer_last_name, room_number, time_slot_hour):
+    # Create an event entry for the room at the specified time
+    db_query = "INSERT INTO FitnessEvents (event_type, room_number, trainer_id, time_slot_hour) VALUES ('Group Class', " + room_number + ", (SELECT trainer_id FROM Trainers WHERE first_name = '" + trainer_first_name + "' AND last_name = '" + trainer_last_name + "'), '" + time_slot_hour + "');"
+    executeQuery(db_query)
+
 # Main Code
 if __name__ == '__main__':
     user_role = ""
@@ -116,7 +121,7 @@ if __name__ == '__main__':
                 print("\t1) Set Availability")
                 print("\t2) Schedule View")
             elif (user_role == "Administrative Staff"):
-                print("\t1) Room Booking")
+                print("\t1) TODO: Room Booking")
                 print("\t2) Class Management")
 
         print("\tq) Quit")
@@ -199,9 +204,12 @@ if __name__ == '__main__':
             if (user_input == "1"):
                 pass
 
-                print(ASTERISK_STRING)
+                # print(ASTERISK_STRING)
             elif (user_input == "2"):
-                pass
+                print("Creating a new class. Enter the desired information.\n(Note: Enter your hour timeslot in XX:00 format)")
+
+                input_arguments = promptArguments(["trainer_first_name", "trainer_last_name", "room_number", "time_slot_hour"])
+                manageClass(input_arguments[0], input_arguments[1], input_arguments[2], input_arguments[3])
 
                 print(ASTERISK_STRING)
             else:
