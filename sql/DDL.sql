@@ -8,12 +8,12 @@ CREATE TABLE Members (
 CREATE TABLE HealthInfo (
     member_id UNIQUE REFERENCES Members(member_id),
     heart_rate_bpm INTEGER,
-    current_weight INTEGER
+    current_weight_lb INTEGER
 );
 
 CREATE TABLE FitnessGoals (
     member_id UNIQUE REFERENCES Members(member_id),
-    target_weight INTEGER
+    target_weight_lb INTEGER
 );
 
 CREATE TABLE Trainers (
