@@ -59,8 +59,8 @@ INSERT INTO EventBookings (booking_id, event_id, member_id) VALUES
     (1, 1, 1),
     (2, 2, 2),
     (3, 4, 1),
-    (3, 4, 4),
-    (3, 4, 5);
+    (4, 4, 4),
+    (5, 4, 5);
 
 INSERT INTO AdministrativeStaff (admin_id, first_name, last_name) VALUES
     (1, 'Alice', 'Griffin'),
