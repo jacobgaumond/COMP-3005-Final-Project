@@ -41,7 +41,7 @@ CREATE TABLE FitnessEvents (
     time_slot_hour TIME
 );
 
-CREATE TABLE Bookings (
+CREATE TABLE EventBookings (
     booking_id SERIAL PRIMARY KEY,
     event_id INTEGER REFERENCES FitnessEvents(event_id),
     member_id INTEGER REFERENCES Members(member_id)
