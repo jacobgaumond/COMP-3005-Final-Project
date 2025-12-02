@@ -66,6 +66,20 @@ def updateMember(first_name, last_name, email, heart_rate_bpm, current_weight_lb
     db_query = "UPDATE FitnessGoals SET target_weight_lb = " + target_weight_lb + " WHERE member_id = (SELECT member_id FROM Members WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "');"
     executeQuery(db_query)
 
+def bookSession(first_name, last_name, trainer_first_name, trainer_last_name, room_number, time_slot_hour):
+    # Create new fitness event (personal session)
+    db_query = "INSERT INTO FitnessEvents (event_type, room_number, trainer_id, time_slot_hour) VALUES ('Personal Session', " + room_number + ", (SELECT trainer_id FROM Trainers WHERE first_name = " + trainer_first_name + "' AND last_name = '" + trainer_last_name + "'), '" + time_slot_hour + "');"
+    executeQuery(db_query)
+
+    # Book the member for the new event
+    db_query = "INSERT INTO EventBookings (event_id, member_id) VALUES ((SELECT event_id FROM FitnessEvents WHERE room_number = " + room_number + " AND time_slot_hour = '" + time_slot_hour + "'), (SELECT member_id FROM Members WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "'));"
+    executeQuery(db_query)
+
+def bookClass(first_name, last_name, room_number, time_slot_hour):
+    # Book the member for the event (Group Class)
+    db_query = "INSERT INTO EventBookings (event_id, member_id) VALUES ((SELECT event_id FROM FitnessEvents WHERE room_number = " + room_number + " AND time_slot_hour = '" + time_slot_hour + "'), (SELECT member_id FROM Members WHERE first_name = '" + first_name + "' AND last_name = '" + last_name + "'));"
+    executeQuery(db_query)
+
 # Main Code
 if __name__ == '__main__':
     user_role = ""
@@ -130,6 +144,20 @@ if __name__ == '__main__':
 
                 input_arguments = promptArguments(["first_name", "last_name", "email", "heart_rate_bpm", "current_weight_lb", "target_weight_lb"])
                 updateMember(input_arguments[0], input_arguments[1], input_arguments[2], input_arguments[3], input_arguments[4], input_arguments[5])
+
+                print(ASTERISK_STRING)
+            elif (user_input == "3"):
+                print("Booking a new session with a trainer. Enter your first/last name, then the desired information for your personal session.\n(Note: Enter your hour timeslot in XX:00 format)")
+
+                input_arguments = promptArguments(["first_name", "last_name", "trainer_first_name", "trainer_last_name", "room_number", "time_slot_hour"])
+                bookSession(input_arguments[0], input_arguments[1], input_arguments[2], input_arguments[3], input_arguments[5], input_arguments[6])
+
+                print(ASTERISK_STRING)
+            elif (user_input == "4"):
+                print("Registering for a class. Enter your first/last name, then the desired information for your class.\n(Note: Enter your hour timeslot in XX:00 format)")
+
+                input_arguments = promptArguments(["first_name", "last_name", "room_number", "time_slot_hour"])
+                bookClass(input_arguments[0], input_arguments[1], input_arguments[2], input_arguments[3])
 
                 print(ASTERISK_STRING)
             else:
